@@ -23,6 +23,7 @@ const menuItems = [
     name: "Contact",
     href: "/contact",
   },
+  
 ];
 
 export default function Navbar() {
