@@ -1,4 +1,5 @@
 import FAQ from "./FAQ";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
     return (
@@ -15,20 +16,20 @@ export default function Home() {
                                     Discover the perfect furniture for your space with our flexible rental options.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-2">
-                                    <a
-                                        href="#"
+                                    <NavLink
+                                        to="/register"
                                         className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                                         style={{ backgroundColor: "black", color: "white" }}
                                     >
                                         Shop Now
-                                    </a>
-                                    <a
-                                        href="#"
+                                    </NavLink>
+                                    <NavLink
+                                        to="/products"
                                         className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-6 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 
                                     >
                                         Browse Collections
-                                    </a>
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>
