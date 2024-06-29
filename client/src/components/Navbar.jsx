@@ -1,6 +1,7 @@
 import React from "react";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import Input_Search from "./Input_Search";
 
 const menuItems = [
   {
@@ -73,11 +74,7 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="flex grow justify-end">
-          <input
-            className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-            type="text"
-            placeholder="Serach"
-          ></input>
+          <Input_Search />
         </div>
         <div className="ml-2 mt-2 hidden lg:block">
           <span className="relative inline-block" >
@@ -109,7 +106,7 @@ export default function Navbar() {
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
-                    <span>
+                    {/* <span>
                       <svg
                         width="30"
                         height="30"
@@ -122,8 +119,8 @@ export default function Navbar() {
                           fill="black"
                         />
                       </svg>
-                    </span>
-                    <span className="font-bold">DevUI</span>
+                    </span> */}
+                    {/* <span className="font-bold">DevUI</span> */}
                   </div>
                   <div className="-mr-2">
                     <button
@@ -147,9 +144,9 @@ export default function Navbar() {
                         <span className="ml-3 text-base font-medium text-gray-900">
                           {item.name}
                         </span>
-                        <span>
+                        {/* <span>
                           <ChevronRight className="ml-3 h-4 w-4" />
-                        </span>
+                        </span> */}
                       </a>
                     ))}
                   </nav>
