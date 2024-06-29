@@ -7,17 +7,22 @@ const menuItems = [
     href: '/',
   },
   {
+    name: "All Products", 
+    href: '/products'
+  }, 
+  {
+    name: 'Pricing', 
+    href:"/pricing"
+  }, 
+  {
     name: 'About',
     href: '/about',
   },
   {
     name: 'Contact',
     href: '/contact',
-  },
-  {
-    name: "Features", 
-    href: '/collections'
   }
+  
 ]
 
 export default function Navbar() {

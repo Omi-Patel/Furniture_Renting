@@ -1,7 +1,7 @@
 export default function FAQ() {
     return (
         <>
-            <section className="mx-auto max-w-7xl bg-gray-50 px-2 py-10 md:px-0">
+            <section className="mx-auto max-w-7xl bg-gray-50 px-2 py-10 md:px-0 mb-10">
                 <div>
                     <div className="mx-auto max-w-2xl lg:text-center">
                         <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
@@ -22,12 +22,6 @@ export default function FAQ() {
                             </div>
                         ))}
                     </div>
-                    <p className="mt-10 text-center text-gray-600">
-                        Can&apos;t find what you&apos;re looking for?{' '}
-                        <a href="#" title="" className="black font-semibold hover:underline">
-                            Contact us
-                        </a>
-                    </p>
                 </div>
             </section>
         </>

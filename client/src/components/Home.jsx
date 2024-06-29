@@ -1,8 +1,10 @@
+import FAQ from "./FAQ";
+
 export default function Home() {
     return (
         <main className="flex-1">
             <div className="relative w-full bg-white">
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
                     <section className="bg-[url('/hero-image.jpg')] bg-cover bg-center py-20 md:py-32 lg:py-40">
                         <div className="container px-4 md:px-6">
                             <div className="max-w-xl space-y-4">
@@ -31,6 +33,9 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
+
+                    {/* FAQ */}
+                    <FAQ />
                 </div>
             </div>
         </main>
