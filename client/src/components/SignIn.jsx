@@ -1,6 +1,82 @@
-import { ArrowRight } from 'lucide-react'
+import axios from "axios";
+import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 
 export default function SignInThree() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  //navigate
+  const navigate = useNavigate();
+
+  const loginHandle = async () => {
+    if (!email || !password) {
+      return toast.error("Provide All The Data..!");
+    }
+
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_BASE_URL + `/api/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      //receiving response
+      const loginData = await response.json();
+      console.log(loginData);
+
+      //condition
+      if (loginData.error) {
+        toast.error(loginData.error);
+      } else {
+        setLoading(false);
+        setEmail("");
+        setPassword("");
+        toast.success(loginData.success);
+        navigate("/");
+
+        const token = loginData?.token;
+        localStorage.setItem("token", loginData?.token);
+        // localStorage.setItem("userEmail", loginData?.user?.email);
+        localStorage.setItem("userId", loginData?.user?._id);
+
+        const decoded = jwtDecode(token);
+        const response = await axios.post(
+          import.meta.env.VITE_BASE_URL + `/api/users/verifyuser`,
+          { token }
+        );
+
+        localStorage.setItem("userId", response.data.decoded.user.id);
+      }
+
+      //
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const verifyToken = async () => {
+  //   try {
+  //     setIsVerified(response.data);
+  //     console.log(isVerified);
+  //   } catch (error) {
+  //     console.error("Token verification failed", error);
+  //   }
+  // };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -23,39 +99,51 @@ export default function SignInThree() {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600 ">
-            Don&apos;t have an account?{' '}
-            <a
-              href="#"
+            Don&apos;t have an account?{" "}
+            <NavLink
+              to={"/register"}
               title=""
               className="font-semibold text-black transition-all duration-200 hover:underline"
             >
               Create a free account
-            </a>
+            </NavLink>
           </p>
           <form action="#" method="POST" className="mt-8">
             <div className="space-y-5">
               <div>
-                <label htmlFor="" className="text-base font-medium text-gray-900">
-                  {' '}
-                  Email address{' '}
+                <label
+                  htmlFor=""
+                  className="text-base font-medium text-gray-900"
+                >
+                  {" "}
+                  Email address{" "}
                 </label>
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   ></input>
                 </div>
               </div>
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="" className="text-base font-medium text-gray-900">
-                    {' '}
-                    Password{' '}
+                  <label
+                    htmlFor=""
+                    className="text-base font-medium text-gray-900"
+                  >
+                    {" "}
+                    Password{" "}
                   </label>
-                  <a href="#" title="" className="text-sm font-semibold text-black hover:underline">
-                    {' '}
-                    Forgot password?{' '}
+                  <a
+                    href="#"
+                    title=""
+                    className="text-sm font-semibold text-black hover:underline"
+                  >
+                    {" "}
+                    Forgot password?{" "}
                   </a>
                 </div>
                 <div className="mt-2">
@@ -63,15 +151,18 @@ export default function SignInThree() {
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   ></input>
                 </div>
               </div>
               <div>
                 <button
+                  onClick={loginHandle}
                   type="button"
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
-                  Get started <ArrowRight className="ml-2" size={16} />
+                  Log In <ArrowRight className="ml-2" size={16} />
                 </button>
               </div>
             </div>
@@ -97,5 +188,5 @@ export default function SignInThree() {
         </div>
       </div>
     </section>
-  )
+  );
 }

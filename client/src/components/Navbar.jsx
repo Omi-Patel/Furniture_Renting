@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -24,30 +24,39 @@ const menuItems = [
     href: "/contact",
   },
 
-  
-
   {
-    name: "SignUp",
-    href: "/register"
-  }, 
+    href: "/register",
+  },
   {
-    name: "SignIn",
-    herf: "/signin"
-  }
-
+    herf: "/signin",
+  },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [login, setLogin] = useState(false);
+  const userId = localStorage.getItem("userId");
+
+  const onLogin = () => {
+    if (localStorage.getItem("token")) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    onLogin();
+  }, [localStorage.getItem("token")]);
+
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-slate-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-        <div className="inline-flex items-center space-x-2">
+        <div className="inline-flex items-center space-x-2 ">
           <span>
             <svg
               width="30"
@@ -66,8 +75,8 @@ export default function Navbar() {
         </div>
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
-            {menuItems.map((item) => (
-              <li key={item.name}>
+            {menuItems.map((item, index) => (
+              <li key={index}>
                 <NavLink
                   to={item.href}
                   className="text-sm font-semibold text-gray-800 hover:text-gray-900"
@@ -78,27 +87,46 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-        <div className="flex grow justify-end">
-          <input
-            className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-            type="text"
-            placeholder="Serach"
-          ></input>
-        </div>
-        <div className="ml-2 mt-2 hidden lg:block">
-          <span className="relative inline-block">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              fill="currentColor"
-              className="bi bi-cart ml-2"
-              viewBox="0 0 16 16"
-            >
-              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-            </svg>
-            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
-          </span>
+        <div className="flex justify-center items-center">
+          <div className="flex grow justify-end">
+            <input
+              className="flex h-10 w-[150px] sm:w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+              type="text"
+              placeholder="Serach"
+            ></input>
+          </div>
+          <div className="ml-2 mt-2 hidden lg:block">
+            {login ? (
+              <NavLink to={`/profile/${userId}`}>
+                <span className="relative inline-block">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-10"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                  </svg>
+
+                  <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
+                </span>
+              </NavLink>
+            ) : (
+              <div className="">
+                <NavLink to={"/signin"}>
+                  <button className="px-2 py-1  rounded-full border-2 border-black">
+                    Login
+                  </button>
+                </NavLink>
+              </div>
+            )}
+          </div>
         </div>
         <div className="ml-2 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
@@ -123,7 +151,7 @@ export default function Navbar() {
                         />
                       </svg>
                     </span>
-                    <span className="font-bold">DevUI</span>
+                    <span className="font-bold">Furniture Rentals</span>
                   </div>
                   <div className="-mr-2">
                     <button
@@ -138,17 +166,14 @@ export default function Navbar() {
                 </div>
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
-                    {menuItems.map((item) => (
+                    {menuItems.map((item, index) => (
                       <a
-                        key={item.name}
+                        key={index}
                         href={item.href}
                         className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">
                           {item.name}
-                        </span>
-                        <span>
-                          <ChevronRight className="ml-3 h-4 w-4" />
                         </span>
                       </a>
                     ))}

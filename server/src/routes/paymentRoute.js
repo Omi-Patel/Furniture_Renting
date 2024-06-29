@@ -1,7 +1,10 @@
+const express = require("express");
+const router = express.Router();
+
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-const checkout = async (req, res) => {
+router.post("/checkout", async (req, res) => {
   let instance = new Razorpay({
     key_id: process.env.RAZORPAY_API_KEY,
     key_secret: process.env.RAZORPAY_API_SECRET,
@@ -19,9 +22,8 @@ const checkout = async (req, res) => {
     }
     return res.send({ code: 200, message: "Order Created", data: order });
   });
-};
-
-const paymentVarification = async (req, res) => {
+});
+router.post("/paymentvarification", async (req, res) => {
   // console.log(req.body);
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     req.body.response;
@@ -43,6 +45,6 @@ const paymentVarification = async (req, res) => {
   } else {
     res.send({ code: 500, message: "Invalid Payment Signature" });
   }
-};
+});
 
-module.exports = { checkout, paymentVarification };
+module.exports = router;

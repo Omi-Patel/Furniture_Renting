@@ -1,12 +1,18 @@
 import axios from "axios";
 import { ChevronDown, Star } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 
 export default function ProductOne() {
   const [product, setProduct] = useState([]);
+  const [qty, setQty] = useState(1);
+  const [isVerified, setIsVerified] = useState(false);
 
   const { productId } = useParams();
+
+  const navigate = useNavigate();
 
   // console.log(productId);
 
@@ -23,8 +29,137 @@ export default function ProductOne() {
     }
   };
 
+  // Open Razorpay
+  const handleOpenRazorpay = async (data) => {
+    const key = await axios.get(import.meta.env.VITE_BASE_URL + `/api/getkey`);
+    console.log(key.data.key, "KEY");
+
+    const options = {
+      key: key.data.key, // Enter the Key ID generated from the Dashboard
+      amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      currency: "INR",
+      name: "Furniture Renting",
+      description: "BookYourFurniture-Online",
+      image: "https://avatars.githubusercontent.com/u/122214228?v=4",
+      order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
+      // callback_url: import.meta.env.VITE_MAIN_URL + "/api/paymentvarification",
+      handler: function (response) {
+        // console.log(response, "Varification");
+        axios
+          .post(
+            import.meta.env.VITE_BASE_URL + `/api/paynow/paymentvarification`,
+            {
+              response: response,
+            }
+          )
+          .then((res) => {
+            console.log(res, "Order Varified");
+            console.log("ORDER SAVED TO DB");
+            makeOrder(qty);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      prefill: {
+        name: "OM PATEL",
+        email: "ompate@example.com",
+        contact: "7777777777",
+      },
+      notes: {
+        address: "Book Your Meal.PVT-Ltd",
+      },
+      theme: {
+        color: "#3321cd",
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
+  // Checkout Handler
+  const checkoutHandler = async (amount) => {
+    if (!location) {
+      return toast.error("Please Give Your Location..!");
+    }
+    console.log(amount);
+    const _data = { amount: amount };
+    axios
+      .post(import.meta.env.VITE_BASE_URL + `/api/paynow/checkout`, _data)
+      .then((res) => {
+        console.log(res.data, "Order Data");
+        handleOpenRazorpay(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // console.log(order, "ORDER");
+
+    //
+  };
+
+  // Send Order to DB
+  const makeOrder = async (count) => {
+    try {
+      const userId = localStorage.getItem("userId");
+      // console.log(userId, "USER");
+      // console.log(productId, "PID");
+
+      const user = userId;
+      const product = productId;
+      const startDate = Date.now();
+      const endDate = Date.now();
+
+      if (!product || !startDate || !endDate) {
+        return toast.error("All Fields Are Required..!");
+      }
+
+      const response = await fetch(
+        import.meta.env.VITE_BASE_URL + `/api/booking`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            user,
+            product: productId,
+            startDate,
+            endDate,
+            qty: count,
+          }),
+        }
+      );
+
+      // order response
+      const orderRes = await response.json();
+      console.log(orderRes);
+
+      // condition
+      if (orderRes) {
+        toast.success(orderRes.success);
+        setQty(1);
+        navigate("/paymentsuccess");
+      } else {
+        toast.error(orderRes.error);
+      }
+
+      // end
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const token = localStorage.getItem("token"); // Replace with the actual token
+
   useEffect(() => {
     getSingleProduct();
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -55,26 +190,21 @@ export default function ProductOne() {
                 </span>
               </div>
               <p className="leading-relaxed">{product.description}</p>
-              <div className="mb-5 mt-6 flex items-center border-b-2 border-gray-100 pb-5">
-                <div className="ml-auto flex items-center">
-                  <span className="mr-3 text-sm font-semibold">Size</span>
-                  <div className="relative">
-                    <select className="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-sm focus:border-black focus:outline-none focus:ring-2 focus:ring-black">
-                      <option>8 UK</option>
-                      <option>9 UK</option>
-                      <option>10 UK</option>
-                    </select>
-                    <span className="pointer-events-none absolute right-0 top-0 flex h-full w-10 items-center justify-center text-center text-gray-600">
-                      <ChevronDown size={16} />
-                    </span>
-                  </div>
-                </div>
+              <div>
+                <label htmlFor="size">Enter Quantity</label>
+                <input
+                  type="number"
+                  className="w-20 ml-6 mt-10  py-1 px-2 rounded-lg border-2 border-gray-200"
+                  value={qty}
+                  onChange={(e) => setQty(e.target.value)}
+                />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-6">
                 <span className="title-font text-xl font-bold text-gray-900">
                   ₹{product.price}
                 </span>
                 <button
+                  onClick={() => checkoutHandler(qty * product.price)}
                   type="button"
                   className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >

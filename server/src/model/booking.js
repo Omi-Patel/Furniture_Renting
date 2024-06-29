@@ -19,6 +19,10 @@ const BookingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  qty: {
+    type: Number,
+    default: 1,
+  },
 });
 
 const Booking = mongoose.model("Booking", BookingSchema);
