@@ -2,7 +2,7 @@ const express = require("express");
 const connectToDB = require("./config/connect");
 
 const users = require("./src/routes/userRoute");
-// const products = require('./routes/products');
+const products = require('./src/routes/productRoute');
 
 connectToDB();
 
@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", users);
-// app.use('/api/products', products);
+app.use('/api/products', products);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
