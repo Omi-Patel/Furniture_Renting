@@ -23,6 +23,14 @@ const menuItems = [
     name: "Contact",
     href: "/contact",
   },
+  {
+    name: "SignUp",
+    href: "/register"
+  }, 
+  {
+    name: "SignIn",
+    herf: "/signin"
+  }
 ];
 
 export default function Navbar() {
