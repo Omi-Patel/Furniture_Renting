@@ -11,9 +11,11 @@ export default function ProductThree() {
       const allProducts = await axios.get(
         import.meta.env.VITE_BASE_URL + `/api/products`
       );
-
+      console.log(allProducts.data);
       setProducts(allProducts.data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
