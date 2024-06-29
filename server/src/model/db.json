@@ -1,0 +1,164 @@
+{
+    "furnitures": [
+        {
+            "id": 1,
+            "name": "Modern Sofa",
+            "description": "A comfortable and stylish modern sofa.",
+            "price": 50,
+            "imageUrl": "https://i.pinimg.com/474x/92/5b/8f/925b8f5868a8b5a115863693b18518e4.jpg",
+            "category": "Living Room"
+        },
+        {
+            "id": 2,
+            "name": "Dining Table",
+            "description": "A large dining table that seats six.",
+            "price": 40,
+            "imageUrl": "https://thetimberguy.com/cdn/shop/products/Solid-Sheesham-Wood-Designer-Dining-table-with-Cushioned-Chair-Bench-furniture-set-CHOOSE-YOUR-COMBINATION_0541a87c-82b2-4d7f-b69a-2e91b37cbf8a_1200x.jpg?v=1628791733",
+            "category": "Dining Room"
+        },
+        {
+            "id": 3,
+            "name": "Queen Bed",
+            "description": "A spacious queen-sized bed.",
+            "price": 60,
+            "imageUrl": "https://images-cdn.ubuy.co.in/64cf92d1a339ea420376dd46-einfach-queen-platform-bed-frame-with.jpg",
+            "category": "Bedroom"
+        },
+        {
+            "id": 4,
+            "name": "Office Chair",
+            "description": "An ergonomic office chair for comfortable seating.",
+            "price": 20,
+            "imageUrl": "https://images.woodenstreet.de/image/data/adiko%20systems/sleek-high-back-office-chair-black/1.jpg",
+            "category": "Office"
+        },
+        {
+            "id": 5,
+            "name": "Coffee Table",
+            "description": "A stylish coffee table for your living room.",
+            "price": 30,
+            "imageUrl": "https://m.media-amazon.com/images/I/71NVaB0dnIL._AC_UF894,1000_QL80_.jpg",
+            "category": "Living Room"
+        },
+        {
+            "id": 6,
+            "name": "Single Bed",
+            "description": "A cozy single bed for your guest room.",
+            "price": 35,
+            "imageUrl": "https://images.woodenstreet.de/image/cache/data%2Fsingle-beds%2Fadolph-single-bed-without-storage%2Fupdated%2Fhoney%2F1-750x650.jpg",
+            "category": "Bedroom"
+        },
+        {
+            "id": 7,
+            "name": "Executive Desk",
+            "description": "An executive desk for your home office.",
+            "price": 55,
+            "imageUrl": "https://images-cdn.ubuy.co.in/633e48f9d08bc524f521d26a-tribesigns-l-shaped-desk-with-2-drawers.jpg",
+            "category": "Office"
+        },
+        {
+            "id": 8,
+            "name": "Bookshelf",
+            "description": "A practical bookshelf to organize your books.",
+            "price": 25,
+            "imageUrl": "https://www.angelfurniture.in/image/cache/catalog/Products/AF-222H/Sheesham-Solid-Wood-Book-Shelf-1-550x550h.jpg",
+            "category": "Living Room"
+        },
+        {
+            "id": 9,
+            "name": "Armchair",
+            "description": "A comfortable armchair for relaxation.",
+            "price": 45,
+            "imageUrl": "https://www.gulmoharlane.com/uploads/gulmoharlane/products/dalhousie-tufted-leather-armchair---1-337888_l.jpg?v=368",
+            "category": "Living Room"
+        },
+        {
+            "id": 10,
+            "name": "Round Dining Table",
+            "description": "A modern round dining table.",
+            "price": 55,
+            "imageUrl": "https://www.nismaayadecor.in/cdn/shop/files/nismaaya-acco-6-seater-round-dining-table-chair-set_2.png?v=1701418496&width=1080",
+            "category": "Dining Room"
+        },
+        {
+            "id": 11,
+            "name": "King Bed",
+            "description": "A luxurious king-sized bed.",
+            "price": 80,
+            "imageUrl": "https://www.zorin.co.in/cdn/shop/files/liftstylr-room-Manor.jpg?v=1712230149",
+            "category": "Bedroom"
+        },
+        {
+            "id": 12,
+            "name": "Swivel Chair",
+            "description": "A modern swivel chair for your workspace.",
+            "price": 50,
+            "imageUrl": "https://cdn.pixelspray.io/v2/black-bread-289bfa/TIw66q/wrkr/t.resize(h:1240,w:1400)/data/Westelm/15-feb-2023/8691221_2.jpg",
+            "category": "Office"
+        },
+        {
+            "id": 13,
+            "name": "Side Table",
+            "description": "A small side table for your living room.",
+            "price": 20,
+            "imageUrl": "https://www.at-home.co.in/cdn/shop/files/BENTONSIDETABLE_1200x.jpg?v=1693888812",
+            "category": "Living Room"
+        },
+        {
+            "id": 14,
+            "name": "Folding Dining Table",
+            "description": "A practical folding dining table.",
+            "price": 60,
+            "imageUrl": "https://m.media-amazon.com/images/I/81GtsZx2wrL._AC_UF1000,1000_QL80_.jpg",
+            "category": "Dining Room"
+        },
+        {
+            "id": 15,
+            "name": "Bunk Bed",
+            "description": "A bunk bed for kids' room.",
+            "price": 70,
+            "imageUrl": "https://www.at-home.co.in/cdn/shop/products/Kesterbunkbed.jpg?v=1667292498",
+            "category": "Bedroom"
+        },
+        {
+            "id": 16,
+            "name": "Meeting Table",
+            "description": "A large meeting table for office use.",
+            "price": 90,
+            "imageUrl": "https://5.imimg.com/data5/AY/CW/IW/SELLER-1492614/conference-meeting-table.jpg",
+            "category": "Office"
+        },
+        {
+            "id": 17,
+            "name": "Console Table",
+            "description": "A sleek console table for your hallway.",
+            "price": 40,
+            "imageUrl": "https://rukminim2.flixcart.com/image/850/1000/l2nmnww0/side-table/a/y/y/30-plywood-117-45-ct-20-console-table-ng-decor-75-white-golden-original-imagdy6gd82ppacd.jpeg?q=20&crop=false",
+            "category": "Living Room"
+        },
+        {
+            "id": 18,
+            "name": "Lounge Chair",
+            "description": "A comfortable lounge chair for relaxation.",
+            "price": 55,
+            "imageUrl": "https://m.media-amazon.com/images/I/51RfV+xlprL._AC_UF1000,1000_QL80_.jpg",
+            "category": "Living Room"
+        },
+        {
+            "id": 19,
+            "name": "Bar Stool",
+            "description": "A modern bar stool for your kitchen counter.",
+            "price": 30,
+            "imageUrl": "https://m.media-amazon.com/images/I/715bCjoAIrL._AC_UF894,1000_QL80_.jpg",
+            "category": "Kitchen"
+        },
+        {
+            "id": 20,
+            "name": "Study Desk",
+            "description": "A compact study desk for students.",
+            "price": 25,
+            "imageUrl": "https://media-uk.landmarkshops.in/cdn-cgi/image/h=750,w=750,q=85,fit=cover/homecentre/1000007824771-1000007824770_02-2100.JPG",
+            "category": "Office"
+        }
+    ]
+}
