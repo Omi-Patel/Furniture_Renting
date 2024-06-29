@@ -46,9 +46,19 @@ const Profile = () => {
           </label>
           <p className="text-lg text-gray-900">{profile.email}</p>
         </div>
-        <button className="bg-black text-white py-2 px-4 rounded-xl hover:bg-gray-900 focus:outline-none focus:bg-gray-900">
-          Update Profile
-        </button>
+        <div className="flex justify-between">
+          <button className="bg-black text-white py-2 px-4 rounded-xl hover:bg-gray-900 focus:outline-none focus:bg-gray-900">
+            Update Profile
+          </button>
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+            }}
+            className="bg-red-600 text-white py-2 px-4 rounded-xl hover:bg-gray-900 focus:outline-none focus:bg-gray-900"
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
