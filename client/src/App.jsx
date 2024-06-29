@@ -1,5 +1,5 @@
 import './App.css'
-import ProductOne from '../../../Furniture Rent/src/components/Product-Single.jsx'
+import ProductOne from '../../client/src/components/Product-Single.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './components/Home.jsx'
 import Navbar from './components/Navbar.jsx'

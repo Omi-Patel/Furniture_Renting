@@ -1,36 +1,36 @@
-import React from 'react'
-import { Menu, X  , ChevronRight } from 'lucide-react'
+import React from "react";
+import { Menu, X, ChevronRight } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const menuItems = [
   {
-    name: 'Home',
-    href: '/',
+    name: "Home",
+    href: "/",
   },
   {
-    name: "All Products", 
-    href: '/products'
-  }, 
-  {
-    name: 'Pricing', 
-    href:"/pricing"
-  }, 
-  {
-    name: 'About',
-    href: '/about',
+    name: "All Products",
+    href: "/products",
   },
   {
-    name: 'Contact',
-    href: '/contact',
-  }
-  
-]
+    name: "Pricing",
+    href: "/pricing",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+  {
+    name: "Contact",
+    href: "/contact",
+  },
+];
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div className="relative w-full bg-white">
@@ -56,12 +56,12 @@ export default function Navbar() {
           <ul className="ml-12 inline-flex space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
-                  href={item.href}
+                <NavLink
+                  to={item.href}
                   className="text-sm font-semibold text-gray-800 hover:text-gray-900"
                 >
                   {item.name}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -75,7 +75,14 @@ export default function Navbar() {
         </div>
         <div className="ml-2 mt-2 hidden lg:block">
           <span className="relative inline-block">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-cart ml-2" viewBox="0 0 16 16">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              className="bi bi-cart ml-2"
+              viewBox="0 0 16 16"
+            >
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
             </svg>
             <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
@@ -152,5 +159,5 @@ export default function Navbar() {
         )}
       </div>
     </div>
-  )
+  );
 }
