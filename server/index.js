@@ -4,8 +4,9 @@ const cors = require("cors");
 
 const users = require("./src/routes/userRoute");
 const products = require("./src/routes/productRoute");
-const booking = require('./src/routes/bookRoute')
+const booking = require("./src/routes/bookRoute");
 const payment = require("./src/routes/paymentRoute");
+const fetchUser = require("./src/middlewares/auth");
 
 connectToDB();
 
@@ -21,7 +22,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", users);
 app.use("/api/products", products);
-app.use('/api', booking)
+app.use("/api/booking", fetchUser, booking);
 app.use("/api/paynow", payment);
 
 app.get("/api/getkey", (req, res) => {

@@ -47,6 +47,8 @@ export default function Navbar() {
 
   const navigate = useNavigate();
 
+  const userId = localStorage.getItem("userId");
+
   const onLogin = () => {
     if (localStorage.getItem("token")) {
       setLogin(true);
@@ -91,7 +93,9 @@ export default function Navbar() {
               />
             </svg>
           </span>
-          <span className="font-bold text-sm sm:text-xl">Furniture Rentals</span>
+          <span className="font-bold text-sm sm:text-xl">
+            Furniture Rentals
+          </span>
         </div>
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
@@ -154,9 +158,7 @@ export default function Navbar() {
                           <div className="flex flex-col gap-2">
                             <Button className="text-[16px] font-medium tracking-wider  w-32 px-0">
                               <NavLink
-                                to={`/profile/${localStorage.getItem(
-                                  "userId"
-                                )}`}
+                                to={`/profile/${userId}`}
                                 className="flex gap-2 justify-center items-center p-2  w-full"
                               >
                                 <span>

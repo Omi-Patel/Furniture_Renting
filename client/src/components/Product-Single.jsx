@@ -13,6 +13,7 @@ export default function ProductOne() {
   const { productId } = useParams();
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token"); // Replace with the actual token
 
   // console.log(productId);
 
@@ -122,6 +123,7 @@ export default function ProductOne() {
           method: "POST",
           headers: {
             "content-type": "application/json",
+            Authorization: "Bearer " + token,
           },
           body: JSON.stringify({
             user,
@@ -151,8 +153,6 @@ export default function ProductOne() {
       console.log(error);
     }
   };
-
-  const token = localStorage.getItem("token"); // Replace with the actual token
 
   useEffect(() => {
     getSingleProduct();

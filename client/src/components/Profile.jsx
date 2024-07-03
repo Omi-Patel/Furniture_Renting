@@ -16,7 +16,7 @@ const Profile = () => {
       const response = await blob.json();
 
       setProfile(response.user);
-      // console.log(profile);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }

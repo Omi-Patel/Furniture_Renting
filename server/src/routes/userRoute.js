@@ -64,7 +64,14 @@ router.get("/profile/:userId", async (req, res) => {
 
   // console.log(id);
   try {
-    const user = await User.findById({ _id: id }).select("-password");
+    const user = await User.findById({ _id: id })
+      .select("-password")
+      .populate({
+        path: "orders",
+        populate: {
+          path: "product",
+        },
+      });
     // console.log(user);
     res.json({ msg: "User Verified Successfully", user });
   } catch (err) {
