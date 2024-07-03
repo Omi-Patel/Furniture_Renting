@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Profile = () => {
   const { userId } = useParams();
   const [profile, setProfile] = useState({});
+
+  const navigate = useNavigate();
 
   const fetchUser = async () => {
     try {
@@ -38,7 +40,7 @@ const Profile = () => {
           <label className="block text-sm font-medium text-gray-700">
             Mobile No. :
           </label>
-          <p className="text-lg text-gray-900">{profile.number}</p>
+          <p className="text-lg text-gray-900">{profile.mobile}</p>
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
@@ -49,14 +51,6 @@ const Profile = () => {
         <div className="flex justify-between">
           <button className="bg-black text-white py-2 px-4 rounded-xl hover:bg-gray-900 focus:outline-none focus:bg-gray-900">
             Update Profile
-          </button>
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-            }}
-            className="bg-red-600 text-white py-2 px-4 rounded-xl hover:bg-gray-900 focus:outline-none focus:bg-gray-900"
-          >
-            Logout
           </button>
         </div>
       </div>

@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
+} from "@nextui-org/dropdown";
+import { Button } from "@nextui-org/button";
+import { toast } from "react-toastify";
 
 const menuItems = [
   {
@@ -35,7 +44,8 @@ const menuItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [login, setLogin] = useState(false);
-  const userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
 
   const onLogin = () => {
     if (localStorage.getItem("token")) {
@@ -45,18 +55,28 @@ export default function Navbar() {
     }
   };
 
+  // logout handle
+  const logoutHandle = () => {
+    setLogin(false);
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    toast.info("User Loggedout Successfully..!");
+    navigate("/");
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   useEffect(() => {
     onLogin();
-  }, [localStorage.getItem("token")]);
+  }, [localStorage.getItem("token"), localStorage.getItem("userId")]);
 
   return (
     <div className="relative w-full bg-slate-300">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
-        <div className="inline-flex items-center space-x-2 ">
+        <div className="inline-flex items-center space-x-2">
           <span>
             <svg
               width="30"
@@ -71,7 +91,7 @@ export default function Navbar() {
               />
             </svg>
           </span>
-          <span className="font-bold text-xl">Furniture Rentals</span>
+          <span className="font-bold text-sm sm:text-xl">Furniture Rentals</span>
         </div>
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
@@ -87,25 +107,26 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center gap-1">
           <div className="flex grow justify-end">
             <input
-              className="flex h-10 w-[150px] sm:w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-7 sm:h-10 w-[120px] sm:w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
               type="text"
               placeholder="Serach"
             ></input>
           </div>
-          <div className="ml-2 mt-2 hidden lg:block">
-            {login ? (
-              <NavLink to={`/profile/${userId}`}>
-                <span className="relative inline-block">
+          {/* // DropdownMenu */}
+          <div>
+            <Dropdown placement="bottom-center" className=" ">
+              <DropdownTrigger>
+                <div className="flex gap-4 items-center ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-10"
+                    className="size-10 cursor-pointer "
                   >
                     <path
                       strokeLinecap="round"
@@ -113,22 +134,111 @@ export default function Navbar() {
                       d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                     />
                   </svg>
+                </div>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Profile Actions"
+                variant=""
+                className=""
+              >
+                {/* Inside Content  */}
 
-                  <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
-                </span>
-              </NavLink>
-            ) : (
-              <div className="">
-                <NavLink to={"/signin"}>
-                  <button className="px-2 py-1  rounded-full border-2 border-black">
-                    Login
-                  </button>
-                </NavLink>
-              </div>
-            )}
+                {/* Profile Button  */}
+
+                {/* Login / Logout Button  */}
+                <DropdownItem className="">
+                  <div className="  flex flex-col items-center justify-center gap-2">
+                    <div className="text-small font-bold">
+                      {login ? (
+                        <>
+                          <div className="flex flex-col gap-2">
+                            <Button className="text-[16px] font-medium tracking-wider  w-32 px-0">
+                              <NavLink
+                                to={`/profile/${localStorage.getItem(
+                                  "userId"
+                                )}`}
+                                className="flex gap-2 justify-center items-center p-2  w-full"
+                              >
+                                <span>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    className="w-6 h-6"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M11.828 2.25c-.916 0-1.699.663-1.85 1.567l-.091.549a.798.798 0 0 1-.517.608 7.45 7.45 0 0 0-.478.198.798.798 0 0 1-.796-.064l-.453-.324a1.875 1.875 0 0 0-2.416.2l-.243.243a1.875 1.875 0 0 0-.2 2.416l.324.453a.798.798 0 0 1 .064.796 7.448 7.448 0 0 0-.198.478.798.798 0 0 1-.608.517l-.55.092a1.875 1.875 0 0 0-1.566 1.849v.344c0 .916.663 1.699 1.567 1.85l.549.091c.281.047.508.25.608.517.06.162.127.321.198.478a.798.798 0 0 1-.064.796l-.324.453a1.875 1.875 0 0 0 .2 2.416l.243.243c.648.648 1.67.733 2.416.2l.453-.324a.798.798 0 0 1 .796-.064c.157.071.316.137.478.198.267.1.47.327.517.608l.092.55c.15.903.932 1.566 1.849 1.566h.344c.916 0 1.699-.663 1.85-1.567l.091-.549a.798.798 0 0 1 .517-.608 7.52 7.52 0 0 0 .478-.198.798.798 0 0 1 .796.064l.453.324a1.875 1.875 0 0 0 2.416-.2l.243-.243c.648-.648.733-1.67.2-2.416l-.324-.453a.798.798 0 0 1-.064-.796c.071-.157.137-.316.198-.478.1-.267.327-.47.608-.517l.55-.091a1.875 1.875 0 0 0 1.566-1.85v-.344c0-.916-.663-1.699-1.567-1.85l-.549-.091a.798.798 0 0 1-.608-.517 7.507 7.507 0 0 0-.198-.478.798.798 0 0 1 .064-.796l.324-.453a1.875 1.875 0 0 0-.2-2.416l-.243-.243a1.875 1.875 0 0 0-2.416-.2l-.453.324a.798.798 0 0 1-.796.064 7.462 7.462 0 0 0-.478-.198.798.798 0 0 1-.517-.608l-.091-.55a1.875 1.875 0 0 0-1.85-1.566h-.344ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </span>
+                                <span>Profile</span>
+                              </NavLink>
+                            </Button>
+
+                            <Button
+                              onClick={() => {
+                                logoutHandle();
+                              }}
+                              variant="flat"
+                              color="danger"
+                              className="px-0 w-32"
+                            >
+                              <div className=" p-2  w-full flex justify-center items-center gap-2 font-bold text-[16px] tracking-wide">
+                                <span>
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="w-6 h-6"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75"
+                                    />
+                                  </svg>
+                                </span>
+                                <span>Logout!</span>
+                              </div>
+                            </Button>
+                          </div>
+                        </>
+                      ) : (
+                        <Button variant="flat" color="success" className="px-0">
+                          <NavLink
+                            to={"/signin"}
+                            className=" p-4 w-full flex gap-2 font-bold text-[16px] tracking-wide"
+                          >
+                            <span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-6 h-6"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </span>
+                            <span>LogIn</span>
+                          </NavLink>
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </div>
         </div>
-        <div className="ml-2 lg:hidden">
+        <div className="ml-1 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
         </div>
         {isMenuOpen && (
@@ -179,17 +289,6 @@ export default function Navbar() {
                     ))}
                   </nav>
                 </div>
-                {/* <div className="ml-3 mt-4 flex items-center space-x-2">
-                  <img
-                    className="inline-block h-10 w-10 rounded-full"
-                    src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
-                    alt="Dan_Aaabromov"
-                  />
-                  <span className="flex flex-col">
-                    <span className="text-sm font-medium text-gray-900">Dan sdsdAbromov</span>
-                    <span className="text-sm font-medium text-gray-500">@dan_abromov</span>
-                  </span>
-                </div> */}
               </div>
             </div>
           </div>

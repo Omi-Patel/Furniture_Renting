@@ -2,6 +2,8 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 export default function SignUpThree() {
   const [name, setName] = useState("");
@@ -59,6 +61,19 @@ export default function SignUpThree() {
       setMobile("");
 
       navigate("/");
+
+      const token = signupData?.token;
+      localStorage.setItem("token", signupData?.token);
+      // localStorage.setItem("userEmail", loginData?.user?.email);
+      localStorage.setItem("userId", signupData?.user?._id);
+
+      const decoded = jwtDecode(token);
+      const response = await axios.post(
+        import.meta.env.VITE_BASE_URL + `/api/users/verifyuser`,
+        { token }
+      );
+
+      localStorage.setItem("userId", response.data.decoded.user.id);
     }
 
     // end of handlesubmin
@@ -140,15 +155,13 @@ export default function SignUpThree() {
                 </div>
               </div>
               <div>
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password"
-                    className="text-base font-medium text-gray-900"
-                  >
-                    {" "}
-                    Password{" "}
-                  </label>
-                </div>
+                <label
+                  htmlFor="password"
+                  className="text-base font-medium text-gray-900"
+                >
+                  {" "}
+                  Password{" "}
+                </label>
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
@@ -159,16 +172,15 @@ export default function SignUpThree() {
                     onChange={(e) => setPassword(e.target.value)}
                   ></input>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <label
-                    htmlFor="password"
-                    className="text-base font-medium text-gray-900"
-                  >
-                    {" "}
-                    Mobile Number{" "}
-                  </label>
-                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className="text-base font-medium text-gray-900"
+                >
+                  {" "}
+                  Mobile Number{" "}
+                </label>
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
@@ -180,6 +192,7 @@ export default function SignUpThree() {
                   ></input>
                 </div>
               </div>
+
               <div>
                 <button
                   onClick={signupHandle}
