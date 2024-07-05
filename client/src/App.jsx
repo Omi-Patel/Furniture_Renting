@@ -15,7 +15,8 @@ import Profile from "./components/Profile.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
-import Dashboard from "./components/Dashboard.jsx";
+import Dashboard from "./components/Admin/Dashboard.jsx";
+import CreateProduct from "./components/Admin/CreateProduct.jsx";
 
 function App() {
   return (
@@ -66,6 +67,15 @@ function App() {
             element={
               <ProtectedRouteForAdmin>
                 <Dashboard />
+              </ProtectedRouteForAdmin>
+            }
+          />
+
+          <Route
+            path="/create-product"
+            element={
+              <ProtectedRouteForAdmin>
+                <CreateProduct />
               </ProtectedRouteForAdmin>
             }
           />

@@ -15,10 +15,10 @@ router.post("/", async (req, res) => {
       available,
     });
     const product = await newProduct.save();
-    res.json(product);
+    res.json({ success: "Product Created Successfully!", product });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json({ error: "Error while creating product..!" });
   }
 });
 
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
     res.json(products);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json({ error: "Error while fetching product..!" });
   }
 });
 
@@ -41,7 +41,7 @@ router.get("/:id", async (req, res) => {
     res.json(products);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json({ error: "Error while fetching product..!" });
   }
 });
 
@@ -59,10 +59,10 @@ router.put("/:id", async (req, res) => {
       { new: true }
     );
 
-    res.json({ msg: "Product Updated Successfully", product });
+    res.json({ success: "Product Updated Successfully", product });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json({ error: "Error while updating product..!" });
   }
 });
 
@@ -71,10 +71,10 @@ router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete({ _id: id });
-    res.json({ msg: "Product Deleted Successfully", product });
+    res.json({ success: "Product Deleted Successfully", product });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json({ error: "Error while deleting product..!" });
   }
 });
 
