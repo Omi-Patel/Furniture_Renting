@@ -64,7 +64,6 @@ export default function SignUpThree() {
 
       const token = signupData?.token;
       localStorage.setItem("token", signupData?.token);
-      // localStorage.setItem("userEmail", loginData?.user?.email);
       localStorage.setItem("userId", signupData?.user?._id);
 
       const decoded = jwtDecode(token);
@@ -74,6 +73,7 @@ export default function SignUpThree() {
       );
 
       localStorage.setItem("userId", response.data.decoded.user.id);
+      localStorage.setItem("userEmail", response.data.decoded.user.email);
     }
 
     // end of handlesubmin

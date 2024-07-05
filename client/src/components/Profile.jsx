@@ -33,7 +33,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="h-screen max-w-7xl mx-auto ">
+    <div className="min-h-screen max-w-7xl mx-auto ">
       {/* Profile Info */}
       <div className=" mt-4  flex flex-col sm:flex-row justify-between items-center">
         <div className="flex  sm:flex-row gap-4  sm:p-4  items-center">
@@ -110,7 +110,7 @@ const Profile = () => {
             {/* Table */}
 
             {orders.length > 0 ? (
-              <div className="relative overflow-x-auto shadow-md sm:rounded-xl bg">
+              <div className="relative overflow-x-auto shadow-md sm:rounded-xl mb-4">
                 {/* table  */}
                 <table className="w-full border-2 border-black shadow-md text-sm text-left text-gray-900">
                   {/* thead  */}

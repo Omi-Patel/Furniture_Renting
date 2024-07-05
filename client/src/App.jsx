@@ -15,6 +15,7 @@ import Profile from "./components/Profile.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 
 function App() {
   return (
@@ -60,7 +61,23 @@ function App() {
             }
           />
 
-          <Route path="/paymentsuccess" element={<PaymentVerify />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRouteForAdmin>
+                <Dashboard />
+              </ProtectedRouteForAdmin>
+            }
+          />
+
+          <Route
+            path="/paymentsuccess"
+            element={
+              <ProtectedRoute>
+                <PaymentVerify />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <ToastContainer />
 
@@ -87,5 +104,14 @@ export const ProtectedRouteForAuth = ({ children }) => {
     return children;
   } else {
     return <Navigate to={"/"} />;
+  }
+};
+
+export const ProtectedRouteForAdmin = ({ children }) => {
+  const userEmail = localStorage.getItem("userEmail");
+  if (userEmail === import.meta.env.VITE_ADMIN_LOGIN) {
+    return children;
+  } else {
+    return <Navigate to={"/signin"} />;
   }
 };

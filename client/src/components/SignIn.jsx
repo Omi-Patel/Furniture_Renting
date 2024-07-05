@@ -46,8 +46,6 @@ export default function SignInThree() {
 
         const token = loginData?.token;
         localStorage.setItem("token", loginData?.token);
-        // localStorage.setItem("userEmail", loginData?.user?.email);
-        localStorage.setItem("userId", loginData?.user?._id);
 
         const decoded = jwtDecode(token);
         const response = await axios.post(
@@ -55,7 +53,10 @@ export default function SignInThree() {
           { token }
         );
 
+        // console.log(response.data );
+
         localStorage.setItem("userId", response.data.decoded.user.id);
+        localStorage.setItem("userEmail", response.data.decoded.user.email);
       }
 
       //

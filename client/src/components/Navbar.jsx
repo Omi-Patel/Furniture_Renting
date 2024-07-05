@@ -44,10 +44,12 @@ const menuItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [login, setLogin] = useState(false);
+  const [adminLogin, setAdminLogin] = useState(false);
 
   const navigate = useNavigate();
 
   const userId = localStorage.getItem("userId");
+  const userEmail = localStorage.getItem("userEmail");
 
   const onLogin = () => {
     if (localStorage.getItem("token")) {
@@ -57,12 +59,22 @@ export default function Navbar() {
     }
   };
 
+  // Admin Login
+  const onAdminLogin = () => {
+    if (userEmail === import.meta.env.VITE_ADMIN_LOGIN) {
+      setAdminLogin(true);
+    } else {
+      setAdminLogin(false);
+    }
+  };
+
   // logout handle
   const logoutHandle = () => {
     setLogin(false);
 
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("userEmail");
     toast.info("User Loggedout Successfully..!");
     navigate("/");
   };
@@ -73,7 +85,8 @@ export default function Navbar() {
 
   useEffect(() => {
     onLogin();
-  }, [localStorage.getItem("token"), localStorage.getItem("userId")]);
+    onAdminLogin();
+  }, [localStorage.getItem("token"), localStorage.getItem("userEmail")]);
 
   return (
     <div className="relative w-full bg-slate-300">
@@ -179,6 +192,45 @@ export default function Navbar() {
                               </NavLink>
                             </Button>
 
+                            {/* Admin Login  */}
+                            <div className=" rounded-xl">
+                              {adminLogin ? (
+                                <Button
+                                  color="primary"
+                                  variant="flat"
+                                  className=" font-medium w-32 tracking-wider text-[16px] px-0"
+                                >
+                                  <NavLink
+                                    to={"/dashboard"}
+                                    className="p-2  w-full"
+                                    color="foreground"
+                                  >
+                                    <div className="flex gap-2 items-center justify-center py-2 px-2  ">
+                                      <span>
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          fill="none"
+                                          viewBox="0 0 24 24"
+                                          strokeWidth={1.5}
+                                          stroke="currentColor"
+                                          className="w-6 h-6"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      <span>Admin</span>
+                                    </div>
+                                  </NavLink>
+                                </Button>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+
                             <Button
                               onClick={() => {
                                 logoutHandle();
@@ -240,6 +292,8 @@ export default function Navbar() {
             </Dropdown>
           </div>
         </div>
+
+        {/* Mobile View */}
         <div className="ml-1 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
         </div>
@@ -279,15 +333,16 @@ export default function Navbar() {
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
                     {menuItems.map((item, index) => (
-                      <a
+                      <NavLink
+                        onClick={toggleMenu}
                         key={index}
-                        href={item.href}
+                        to={item.href}
                         className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">
                           {item.name}
                         </span>
-                      </a>
+                      </NavLink>
                     ))}
                   </nav>
                 </div>
