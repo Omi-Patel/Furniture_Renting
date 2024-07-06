@@ -12,6 +12,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.2",
     "axios": "^1.7.2",
+    "emailjs": "^4.0.3",
     "framer-motion": "^11.2.12",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
@@ -19,6 +20,7 @@
     "razorpay": "^2.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.24.0",
     "react-toastify": "^10.0.5"
   },

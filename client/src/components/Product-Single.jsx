@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 export default function ProductOne() {
   const [product, setProduct] = useState([]);
@@ -164,6 +165,14 @@ export default function ProductOne() {
 
   return (
     <>
+    <div>
+      <Helmet>
+        <title>
+          {document.title = "Products - " + product.name}
+        </title>
+      </Helmet>
+    </div>
+      {/* {data_product()} */}
       <section className="overflow-hidden">
         <div className="mx-auto max-w-5xl px-5 py-24">
           <div className="mx-auto flex flex-wrap items-center lg:w-4/5">

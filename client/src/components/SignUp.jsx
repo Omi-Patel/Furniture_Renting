@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export default function SignUpThree() {
   const [name, setName] = useState("");
@@ -85,6 +86,13 @@ export default function SignUpThree() {
 
   return (
     <section>
+      <div>
+      <Helmet>
+        <title>
+          Welcome - Furniture Rentals
+        </title>
+      </Helmet>
+    </div>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className="mb-2 flex justify-center">

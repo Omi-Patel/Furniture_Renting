@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -22,6 +23,13 @@ export default function Pricing() {
 
   return (
     <>
+    <div>
+      <Helmet>
+        <title>
+          Pricing
+        </title>
+      </Helmet>
+    </div>
       <section className="relative my-12 overflow-hidden py-10 md:my-24 lg:my-32">
         <div className="relative mx-auto max-w-7xl px-4">
           <div className="mx-auto max-w-5xl">

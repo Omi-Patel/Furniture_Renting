@@ -1,11 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import emailjs from 'emailjs'
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs.send(
+      'service_1fx4v2a',
+      'template_q6cqk0p',
+      formData,
+      'RcJS2rrh_yC4RmUQh'
+    )
+    .then((response) => {
+      console.log('SUCCESS!', response.status, response.text);
+    })
+    .catch((error) => {
+      console.error('FAILED...', error);
+    });
+  };
+
   return (
     <>
+    <div>
+      <Helmet>
+        <title>
+          Contact us
+        </title>
+      </Helmet>
+    </div>
       <section className="bg-white text-black">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center">
@@ -15,7 +57,7 @@ export default function Contact() {
             Got a technical issue? Want to send feedback about a beta feature?
             Need details about our Business plan? Let us know.
           </p>
-          <for action="#" className="space-y-8">
+          <form  className="space-y-8" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -29,6 +71,7 @@ export default function Contact() {
                 className="shadow-sm border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="name@flowbite.com"
                 required
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -44,6 +87,7 @@ export default function Contact() {
                 className="shadow-sm border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Your name"
                 required
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -59,6 +103,7 @@ export default function Contact() {
                 className="block p-3 w-full text-sm text-black bg-white rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Let us know how we can help you"
                 required
+                onChange={handleChange}
               />
             </div>
             <div className="sm:col-span-2">
@@ -71,6 +116,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 rows="6"
+                onChange={handleChange}
                 className="block p-2.5 w-full text-sm text-black bg-white rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Leave a comment..."
               ></textarea>
@@ -81,7 +127,7 @@ export default function Contact() {
             >
               Send message
             </button>
-          </for>
+          </form>
         </div>
       </section>
     </>
