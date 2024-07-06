@@ -84,7 +84,7 @@ export default function SignInThree() {
     <div>
       <Helmet>
         <title>
-          Welcome - Furniture Rentals
+          Signin - Furniture Rentals
         </title>
       </Helmet>
     </div>

@@ -35,11 +35,12 @@ const Profile = () => {
 
   return (
     <>
-    <div>
-      <Helmet>
-        <title>{profile.name}</title>
-      </Helmet>
-    </div>
+      <div>
+        <Helmet>
+          <link rel="icon" type="image/svg+xml" href="./src/assets/Picture.png" />
+          <title>{profile.name}</title>
+        </Helmet>
+      </div>
       <div className="min-h-screen max-w-7xl mx-auto ">
         {/* Profile Info */}
         <div className=" mt-4  flex flex-col sm:flex-row justify-between items-center">

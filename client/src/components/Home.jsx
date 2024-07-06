@@ -23,11 +23,11 @@ export default function Home() {
               <div className="container px-4 md:px-6">
                 <div className="max-w-xl space-y-4">
                   <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                    Affordable Furniture Rentals for Every Home
+                    Affordable Furniture Rentals for Every Home. 
                   </h1>
-                  <p className="text-lg text-muted-foreground">
-                    Discover the perfect furniture for your space with our
-                    flexible rental options.
+                  <p className="text-lg text-justify text-muted-foreground">
+    Welcome to our furniture rental service! Discover a wide selection of stylish and functional furniture pieces available for flexible rental periods. Whether you're furnishing a temporary space, staging a home for sale, or planning an event, renting furniture with us offers convenience and affordability. Explore our catalog today and find the perfect pieces to suit your needs.
+
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2">
                     <NavLink
