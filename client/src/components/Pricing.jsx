@@ -1,9 +1,25 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Pricing() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const navigate = useNavigate()
+
+  const Login_first = () => {
+    toast.error('You need to login first in order to choose this plan!')
+    setTimeout(() => {
+      Navigate_SignIn()
+    }, 6000)
+  }
+
+  const Navigate_SignIn = () => {
+    navigate('/signin')
+  }
+
   return (
     <>
       <section className="relative my-12 overflow-hidden py-10 md:my-24 lg:my-32">
@@ -76,6 +92,7 @@ export default function Pricing() {
                     </ul>
                     <button
                       type="button"
+                      onClick={() => Login_first()}
                       className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     >
                       Choose Plan
@@ -154,6 +171,7 @@ export default function Pricing() {
                     </ul>
                     <button
                       type="button"
+                      onClick={() => Login_first()}
                       className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                     >
                       Choose Plan
@@ -227,6 +245,7 @@ export default function Pricing() {
                     </ul>
                     <button
                       type="button"
+                      onClick={() => Login_first()}
                       className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     >
                       Choose Plan
