@@ -8,28 +8,26 @@ export default function Pricing() {
     window.scrollTo(0, 0);
   }, []);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const Login_first = () => {
-    toast.error('You need to login first in order to choose this plan!')
+    toast.error("You need to login first in order to choose this plan!");
     setTimeout(() => {
-      Navigate_SignIn()
-    }, 6000)
-  }
+      Navigate_SignIn();
+    }, 6000);
+  };
 
   const Navigate_SignIn = () => {
-    navigate('/signin')
-  }
+    navigate("/signin");
+  };
 
   return (
     <>
-    <div>
-      <Helmet>
-        <title>
-          Pricing
-        </title>
-      </Helmet>
-    </div>
+      <div>
+        <Helmet>
+          <title>Pricing</title>
+        </Helmet>
+      </div>
       <section className="relative my-12 overflow-hidden py-10 md:my-24 lg:my-32">
         <div className="relative mx-auto max-w-7xl px-4">
           <div className="mx-auto max-w-5xl">
@@ -49,52 +47,52 @@ export default function Pricing() {
                     <ul className="mb-10">
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          No Discount
+                          Access to Premium Furniture Collection
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Basic Support
+                          Free Furniture Maintenance
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Ads Banner Free
+                          Priority Customer Support
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Design Style
+                          Flexible Rental Periods
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Component Library
+                          Free Furniture Assembly
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          All limited links
+                          Insurance Coverage
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Own analytics platform
+                          Unlimited Swaps
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Chat support
+                          Access to Seasonal Collections
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Optimize hashtags
+                          Early Access to New Arrivals
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Unlimited users
+                          Unlimited Users
                         </span>
                       </li>
                     </ul>
@@ -128,52 +126,52 @@ export default function Pricing() {
                     <ul className="mb-10">
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          No Discount
+                          Access to Standard Furniture Collection
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Basic Support
+                          Basic Furniture Maintenance
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Ads Banner Free
+                          Standard Customer Support
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Design Style
+                          Fixed Rental Periods
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Component Library
+                          Furniture Assembly on Request
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          All limited links
+                          Limited Insurance Coverage
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Own analytics platform
+                          Limited Swaps
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Chat support
+                          Seasonal Collections Access
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Optimize hashtags
+                          Early Access to New Arrivals
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-white">
-                          Unlimited users
+                          Unlimited Users
                         </span>
                       </li>
                     </ul>
@@ -190,11 +188,11 @@ export default function Pricing() {
               <div className="-mt-4 w-full lg:-ml-2 lg:-mt-0 lg:w-1/3">
                 <div className="rounded-b-5xl lg:rounded-r-5xl mx-auto max-w-sm border border-gray-200 bg-white pb-8 pl-8 pr-5 pt-12 lg:rounded-b-none lg:pt-6">
                   <span className="mb-2 block text-sm font-semibold text-gray-400">
-                    PREMIUM
+                    BASIC
                   </span>
                   <span className="flex items-end">
                     <span className="text-4xl font-extrabold leading-none">
-                      $150
+                      $50
                     </span>
                     <span className="text-sm font-semibold">/month</span>
                   </span>
@@ -202,52 +200,52 @@ export default function Pricing() {
                     <ul className="mb-10">
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          No Discount
+                          Access to Basic Furniture Collection
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Basic Support
+                          Basic Furniture Maintenance
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Ads Banner Free
+                          Standard Customer Support
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Design Style
+                          Fixed Rental Periods
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Component Library
+                          Furniture Assembly on Request
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          All limited links
+                          Limited Insurance Coverage
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Own analytics platform
+                          No Swaps
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Chat support
+                          Limited Seasonal Collections Access
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Optimize hashtags
+                          Early Access to New Arrivals
                         </span>
                       </li>
                       <li className="mb-6 flex items-center">
                         <span className="ml-2 text-sm text-gray-900">
-                          Unlimited users
+                          Unlimited Users
                         </span>
                       </li>
                     </ul>

@@ -15,7 +15,6 @@ export default function ProductOne() {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token"); // Replace with the actual token
-
   // console.log(productId);
 
   const getSingleProduct = async () => {

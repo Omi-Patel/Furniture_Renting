@@ -80,6 +80,15 @@ export default function SignUpThree() {
     // end of handlesubmin
   };
 
+  function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -179,6 +188,7 @@ export default function SignUpThree() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   ></input>
+                  <input type="checkbox" onClick={myFunction} className="mt-4 mx-1 p-2" />Show Password
                 </div>
               </div>
               <div>

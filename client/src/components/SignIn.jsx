@@ -75,6 +75,15 @@ export default function SignInThree() {
   //   }
   // };
 
+  function myFunction() {
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -161,9 +170,11 @@ export default function SignInThree() {
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                       type="password"
                       placeholder="Password"
+                      id="myInput"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                     ></input>
+                    <input type="checkbox" onClick={myFunction} className="mt-4 mx-1 p-2" />Show Password
                   </div>
                 </div>
                 <div>
