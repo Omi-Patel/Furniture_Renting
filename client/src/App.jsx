@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Loader from "./components/Loader.jsx";
+import Forgot_Password from "./components/Forgot_Password.jsx";
 
 function App() {
 
@@ -92,9 +93,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+              <Route path="/recover-password/verify-otp" element={<Forgot_Password />} />
           </Routes>
           <ToastContainer />
-
           <Footer />
         </BrowserRouter>
          : <Loader />

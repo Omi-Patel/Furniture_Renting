@@ -39,6 +39,9 @@ const menuItems = [
   {
     herf: "/signin",
   },
+  {
+    href: "/recover-password/verify-otp",
+  }
 ];
 
 export default function Navbar() {
