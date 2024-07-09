@@ -19,6 +19,7 @@ import PaymentVerify from "./components/PaymentVerify.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Loader from "./components/Loader.jsx";
 import Forgot_Password from "./components/Forgot_Password.jsx";
+import New_Password from './components/New_Password.jsx'
 
 function App() {
 
@@ -94,6 +95,7 @@ function App() {
               }
             />
               <Route path="/recover-password/verify-otp" element={<Forgot_Password />} />
+              <Route path="/recover-password/new-password" element={<New_Password />} />
           </Routes>
           <ToastContainer />
           <Footer />

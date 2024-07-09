@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Forgot_Password() {
     const [number, setNumber] = useState("");
     const [otp, setOTP] = useState("");
     const [showOTPInput, setShowOTPInput] = useState(false);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     const handleSubmitNumber = (e) => {
         e.preventDefault();
@@ -33,9 +40,13 @@ export default function Forgot_Password() {
 
     const handleVerifyOTP = (e) => {
         e.preventDefault();
+
+        setTimeout(() => {
+            navigate("/recover-password/new-password")
+        }, 5500)
+        toast.success(`OTP Verified: ${otp}`);
         // Here you can add logic to verify the OTP entered by the user
         // Once verified, you can proceed with resetting the password
-        alert(`OTP Verified: ${otp}`);
     };
 
     return (

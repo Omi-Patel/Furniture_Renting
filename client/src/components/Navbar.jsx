@@ -41,6 +41,9 @@ const menuItems = [
   },
   {
     href: "/recover-password/verify-otp",
+  },
+  {
+    href: "/recover-password/new-password",
   }
 ];
 
