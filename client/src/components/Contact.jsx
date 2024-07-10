@@ -73,6 +73,7 @@ export default function Contact() {
               <input
                 type="email"
                 id="email"
+                name="email"
                 className="shadow-sm border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="name@flowbite.com"
                 required
@@ -81,14 +82,15 @@ export default function Contact() {
             </div>
             <div>
               <label
-                htmlFor="text"
+                htmlFor="name"
                 className="block mb-2 text-sm font-medium text-black "
               >
                 Name
               </label>
               <input
+              name="name"
                 type="text"
-                id="text"
+                id="name"
                 className="shadow-sm border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Your name"
                 required
@@ -105,6 +107,7 @@ export default function Contact() {
               <input
                 type="text"
                 id="subject"
+                name="subject"
                 className="block p-3 w-full text-sm text-black bg-white rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                 placeholder="Let us know how we can help you"
                 required
@@ -121,6 +124,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 rows="6"
+                name="message"
                 className="block p-2.5 w-full text-sm text-black bg-white rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Leave a comment..."
                 onChange={(e) => setMessage(e.target.value)}

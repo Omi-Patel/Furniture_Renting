@@ -1,52 +1,83 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import emailjs from 'emailjs-com';
 
 export default function Forgot_Password() {
-    const [number, setNumber] = useState("");
+    const [email, setEmail] = useState("");
     const [otp, setOTP] = useState("");
+    const [new_otp, setNew_otp] = useState("");
     const [showOTPInput, setShowOTPInput] = useState(false);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+    }, []);
 
     const handleSubmitNumber = (e) => {
         e.preventDefault();
-        if(number.length == 10) {
-            toast.success("OTP Send Successfully!")
+        if (email.includes("@")) {
             setShowOTPInput(true);
+            const generated_OTP = generateOTP();
+            setNew_otp(generated_OTP);
+            send_OTP_mail(generated_OTP);
         } else {
-            toast.error("Number must have 10 digits!")
-            setNumber("")
+            toast.error("Email format is not proper!");
         }
-        // Here you can add logic to send OTP to the user's phone number
     };
+
+    const send_OTP_mail = (generated_OTP) => {
+        const templateParams = {
+            to_email: email,
+            message: generated_OTP
+        };
+
+        emailjs.send(
+            'service_1fx4v2a',
+            'template_5956j18',
+            templateParams,
+            'RcJS2rrh_yC4RmUQh' // Add your EmailJS user ID here
+        ).then((result) => {
+            toast.success("OTP Sent Successfully!");
+            console.log(result.text);
+            setOTP("");
+        }).catch((error) => {
+            toast.error(error.message);
+            setOTP("");
+            setTimeout(() => {
+                toast.success("Sending OTP again in a few seconds...");
+                ResendOTP();
+            }, 3000);
+        });
+    };
+
+    function generateOTP() {
+        let digits = '0123456789';
+        let OTP = '';
+        for (let i = 0; i < 6; i++) {
+            OTP += digits[Math.floor(Math.random() * 10)];
+        }
+        return OTP;
+    }
 
     const ResendOTP = (e) => {
         e.preventDefault()
-        if(number.length == 10) {
-            toast.success("OTP Resend Successfully!")
-            setOTP("")
-        } else {
-            toast.error("Error While Resending OTP!")
-            setOTP("")
-        }
-    }
+        handleSubmitNumber(e);
+    };
 
     const handleVerifyOTP = (e) => {
         e.preventDefault();
-
-        setTimeout(() => {
-            navigate("/recover-password/new-password")
-        }, 5500)
-        toast.success(`OTP Verified: ${otp}`);
-        // Here you can add logic to verify the OTP entered by the user
-        // Once verified, you can proceed with resetting the password
+        if (otp === new_otp) {
+            setTimeout(() => {
+                navigate("/recover-password/new-password");
+            }, 5000);
+            toast.success("OTP Verified!");
+        } else {
+            toast.error("Incorrect OTP!");
+        }
     };
 
     return (
@@ -73,14 +104,15 @@ export default function Forgot_Password() {
                                     <div className="mt-2">
                                         <input
                                             className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                                            type="number"
-                                            placeholder="Phone number"
-                                            id="number"
-                                            value={number}
+                                            type="email"
+                                            placeholder="Your Email"
+                                            id="email"
+                                            name="email"
+                                            value={email}
                                             onChange={(e) =>
-                                                setNumber(e.target.value)
+                                                setEmail(e.target.value)
                                             }
-                                        ></input>
+                                        />
                                     </div>
                                 </div>
                                 {showOTPInput && (
@@ -91,15 +123,23 @@ export default function Forgot_Password() {
                                                 type="number"
                                                 placeholder="OTP"
                                                 id="OTP"
+                                                name="OTP"
                                                 value={otp}
                                                 onChange={(e) =>
                                                     setOTP(e.target.value)
                                                 }
-                                            ></input>
-                                            <button className="mt-2" onClick={ResendOTP}>Resend OTP</button>
+                                            />
+                                            <button
+                                                className="mt-2 inline-flex items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 w-full"
+                                                id="resend"
+                                                onClick={ResendOTP}
+                                            >
+                                                Resend OTP
+                                            </button>
                                         </div>
                                         <button
                                             className="mt-2 inline-flex items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 w-full"
+                                            id="verify"
                                             onClick={handleVerifyOTP}
                                         >
                                             Verify
@@ -110,6 +150,7 @@ export default function Forgot_Password() {
                                     <div>
                                         <button
                                             className="mt-2 inline-flex items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80 w-full"
+                                            id="submit"
                                             onClick={handleSubmitNumber}
                                         >
                                             Submit
