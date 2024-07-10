@@ -20,6 +20,7 @@ import Dashboard from "./components/Dashboard.jsx";
 import Loader from "./components/Loader.jsx";
 import Forgot_Password from "./components/Forgot_Password.jsx";
 import New_Password from './components/New_Password.jsx'
+import EditProfileForm from "./components/EditProfileForm.jsx";
 
 function App() {
 

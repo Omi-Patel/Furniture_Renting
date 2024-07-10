@@ -51,6 +51,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [login, setLogin] = useState(false);
   const [adminLogin, setAdminLogin] = useState(false);
+  const [search, setSearch] = useState("")
 
   const navigate = useNavigate();
 
@@ -137,8 +138,10 @@ export default function Navbar() {
               className="flex h-7 sm:h-10 w-[120px] sm:w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
               type="text"
               placeholder="Serach"
+              onChange={(e) => setSearch(e.target.value)}
             ></input>
           </div>
+          
           {/* // DropdownMenu */}
           <div>
             <Dropdown placement="bottom-center" className=" ">
