@@ -19,13 +19,14 @@ export default function Forgot_Password() {
 
     const handleSubmitNumber = (e) => {
         e.preventDefault();
-        if (email.includes("@")) {
+        if (email.includes("@") && confirm("are you written the correct email because It will going to send the OTP on written email")) {
             setShowOTPInput(true);
             const generated_OTP = generateOTP();
             setNew_otp(generated_OTP);
             send_OTP_mail(generated_OTP);
         } else {
-            toast.error("Email format is not proper!");
+            setShowOTPInput(false);
+            toast.error("Email format is not proper or this is not correct email!");
         }
     };
 
