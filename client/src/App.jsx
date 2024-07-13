@@ -17,80 +17,76 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
 import Dashboard from "./components/Admin/Dashboard.jsx";
-<<<<<<< HEAD
-=======
+
 import Loader from "./components/Loader.jsx";
 import Forgot_Password from "./components/Forgot_Password.jsx";
-import New_Password from './components/New_Password.jsx'
+import New_Password from "./components/New_Password.jsx";
 import EditProfileForm from "./components/EditProfileForm.jsx";
->>>>>>> 6cb2e6907da3fc9f6fbb5adc78a37c0ea05add3d
+
 import CreateProduct from "./components/Admin/CreateProduct.jsx";
 
 function App() {
-
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("In loader")
-      setLoader(true)
-    }, 1000)
-  }, [])
+      console.log("In loader");
+      setLoader(true);
+    }, 1000);
+  }, []);
 
   return (
     <>
-      {
-        loader ? 
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/signin"
-              element={
-                <ProtectedRouteForAuth>
-                  <SignIn />
-                </ProtectedRouteForAuth>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <ProtectedRouteForAuth>
-                  <SignUp />
-                </ProtectedRouteForAuth>
-              }
-            />
-            <Route path="/products" element={<Products />} />
-            <Route
-              path="/product/:productId"
-              element={
-                <ProtectedRoute>
-                  <ProductOne />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/profile/:userId"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/signin"
+            element={
+              <ProtectedRouteForAuth>
+                <SignIn />
+              </ProtectedRouteForAuth>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ProtectedRouteForAuth>
+                <SignUp />
+              </ProtectedRouteForAuth>
+            }
+          />
+          <Route path="/products" element={<Products />} />
+          <Route
+            path="/product/:productId"
+            element={
+              <ProtectedRoute>
+                <ProductOne />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/profile/:userId"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRouteForAdmin>
-                  <Dashboard />
-                </ProtectedRouteForAdmin>
-              }
-            />
-            <Route
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRouteForAdmin>
+                <Dashboard />
+              </ProtectedRouteForAdmin>
+            }
+          />
+          <Route
             path="/create-product"
             element={
               <ProtectedRouteForAdmin>
@@ -98,7 +94,6 @@ function App() {
               </ProtectedRouteForAdmin>
             }
           />
-<<<<<<< HEAD
 
           <Route
             path="/create-product"
@@ -117,31 +112,29 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/paymentsuccess"
+            element={
+              <ProtectedRoute>
+                <PaymentVerify />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/recover-password/verify-otp"
+            element={<Forgot_Password />}
+          />
+          <Route
+            path="/recover-password/new-password"
+            element={<New_Password />}
+          />
         </Routes>
         <ToastContainer />
 
         <Footer />
       </BrowserRouter>
-=======
-            <Route
-              path="/paymentsuccess"
-              element={
-                <ProtectedRoute>
-                  <PaymentVerify />
-                </ProtectedRoute>
-              }
-            />
-              <Route path="/recover-password/verify-otp" element={<Forgot_Password />} />
-              <Route path="/recover-password/new-password" element={<New_Password />} />
-          </Routes>
-          <ToastContainer />
-          <Footer />
-        </BrowserRouter>
-         : <Loader />
-      }
->>>>>>> 6cb2e6907da3fc9f6fbb5adc78a37c0ea05add3d
     </>
-
   );
 }
 

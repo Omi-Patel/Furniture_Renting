@@ -12,12 +12,6 @@ export default function Pricing() {
 
   const Login_first = () => {
     toast.error("You need to login first in order to choose this plan!");
-    setTimeout(() => {
-      Navigate_SignIn();
-    }, 6000);
-  };
-
-  const Navigate_SignIn = () => {
     navigate("/signin");
   };
 
