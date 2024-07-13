@@ -16,11 +16,12 @@ import Profile from "./components/Profile.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
-import Dashboard from "./components/Dashboard.jsx";
+import Dashboard from "./components/Admin/Dashboard.jsx";
 import Loader from "./components/Loader.jsx";
 import Forgot_Password from "./components/Forgot_Password.jsx";
 import New_Password from './components/New_Password.jsx'
 import EditProfileForm from "./components/EditProfileForm.jsx";
+import CreateProduct from "./components/Admin/CreateProduct.jsx";
 
 function App() {
 
@@ -86,7 +87,14 @@ function App() {
                 </ProtectedRouteForAdmin>
               }
             />
-
+            <Route
+            path="/create-product"
+            element={
+              <ProtectedRouteForAdmin>
+                <CreateProduct />
+              </ProtectedRouteForAdmin>
+            }
+          />
             <Route
               path="/paymentsuccess"
               element={
