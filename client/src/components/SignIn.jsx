@@ -33,7 +33,6 @@ export default function SignInThree() {
 
       //receiving response
       const loginData = await response.json();
-      console.log(loginData);
 
       //condition
       if (loginData.error) {

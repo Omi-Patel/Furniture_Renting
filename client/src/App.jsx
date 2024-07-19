@@ -13,14 +13,13 @@ import Pricing from "./components/Pricing.jsx";
 import Contact from "./components/Contact.jsx";
 import About from "./components/About.jsx";
 import Profile from "./components/Profile.jsx";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
 import Dashboard from "./components/Admin/Dashboard.jsx";
 import Loader from "./components/Loader.jsx";
 import Forgot_Password from "./components/Forgot_Password.jsx";
 import New_Password from './components/New_Password.jsx'
-import EditProfileForm from "./components/EditProfileForm.jsx";
 import CreateProduct from "./components/Admin/CreateProduct.jsx";
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("In loader")
       setLoader(true)
     }, 1000)
   }, [])
