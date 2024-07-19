@@ -17,12 +17,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
 import Dashboard from "./components/Admin/Dashboard.jsx";
-<<<<<<< parmesh-1
 import Loader from "./components/Loader.jsx";
 import Forgot_Password from "./components/Forgot_Password.jsx";
 import New_Password from './components/New_Password.jsx'
-=======
->>>>>>> main
 import CreateProduct from "./components/Admin/CreateProduct.jsx";
 
 function App() {
@@ -96,7 +93,6 @@ function App() {
               </ProtectedRouteForAdmin>
             }
           />
-<<<<<<< parmesh-1
             <Route
               path="/paymentsuccess"
               element={
@@ -113,31 +109,6 @@ function App() {
         </BrowserRouter>
          : <Loader />
       }
-=======
-
-          <Route
-            path="/create-product"
-            element={
-              <ProtectedRouteForAdmin>
-                <CreateProduct />
-              </ProtectedRouteForAdmin>
-            }
-          />
-
-          <Route
-            path="/paymentsuccess"
-            element={
-              <ProtectedRoute>
-                <PaymentVerify />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-        <ToastContainer />
-
-        <Footer />
-      </BrowserRouter>
->>>>>>> main
     </>
 
   );
