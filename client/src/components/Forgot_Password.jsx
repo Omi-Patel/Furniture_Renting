@@ -90,7 +90,7 @@ export default function Forgot_Password() {
                     <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
                         <div className="mb-2 flex justify-center">
                             <img
-                                src="/src/assets/Signin_SignUp.png"
+                                src="https://i.ibb.co/hHDy6pv/logo.png"
                                 width={100}
                                 alt="Furniture Rentals"
                             />
