@@ -16,11 +16,6 @@ export default function SignUpThree() {
   // navigation
   const navigate = useNavigate();
 
-  const validatePassword = (password) => {
-    const regex = /^(1=.*[a-z])(1=.*[A-Z])(1=.*\d)(1=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  return regex.test(password);
-  };
-
   // signup function
   const signupHandle = async () => {
     //client side validation
@@ -36,12 +31,6 @@ export default function SignUpThree() {
     // contact validation
     if (mobile.length !== 10) {
       return toast.error("Please Enter Valid Contact Number..!");
-    }
-
-    if (!validatePassword(password)) {
-      return toast.error(
-        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
-      );
     }
 
     // send data through backend API

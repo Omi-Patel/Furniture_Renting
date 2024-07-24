@@ -19,7 +19,7 @@ export default function Forgot_Password() {
 
     const handleSubmitNumber = (e) => {
         e.preventDefault();
-        if (email.includes("@")) {
+        if (email.includes("@") && confirm("Write only email from which you created the account because We are fetching the data using written email-id")) {
             setShowOTPInput(true);
             const generated_OTP = generateOTP();
             setNew_otp(generated_OTP);

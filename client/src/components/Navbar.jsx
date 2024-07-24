@@ -111,7 +111,7 @@ export default function Navbar() {
                 fill="black"
               />
             </svg> */}
-            <img src="../../src/assets/logo.png" alt="logo.png" className="bg-slate-300 rounded-full" />
+            <img src="https://i.ibb.co/hHDy6pv/logo.png" alt="logo.png" className="bg-slate-300 rounded-full" />
           </span>
           <span className="font-bold text-sm sm:text-xl">
             Furniture Rentals
@@ -136,7 +136,8 @@ export default function Navbar() {
             <input
               className="flex h-7 sm:h-10 w-[120px] sm:w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
               type="text"
-              placeholder="Serach"
+              placeholder="Search"
+              id="Search"
               onChange={(e) => setSearch(e.target.value)}
             ></input>
           </div>
