@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 
 const CreateProduct = () => {
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");

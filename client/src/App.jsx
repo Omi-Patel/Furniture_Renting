@@ -1,5 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 import ProductOne from "../../client/src/components/Product-Single.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./components/Home.jsx";
@@ -11,14 +13,28 @@ import Pricing from "./components/Pricing.jsx";
 import Contact from "./components/Contact.jsx";
 import About from "./components/About.jsx";
 import Profile from "./components/Profile.jsx";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentVerify from "./components/PaymentVerify.jsx";
 import Dashboard from "./components/Admin/Dashboard.jsx";
+
+import Loader from "./components/Loader.jsx";
+import Forgot_Password from "./components/Forgot_Password.jsx";
+import New_Password from "./components/New_Password.jsx";
+import EditProfileForm from "./components/EditProfileForm.jsx";
+
 import CreateProduct from "./components/Admin/CreateProduct.jsx";
 
 function App() {
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("In loader");
+      setLoader(true);
+    }, 1000);
+  }, []);
+
   return (
     <>
       <BrowserRouter>
@@ -70,6 +86,14 @@ function App() {
               </ProtectedRouteForAdmin>
             }
           />
+          <Route
+            path="/create-product"
+            element={
+              <ProtectedRouteForAdmin>
+                <CreateProduct />
+              </ProtectedRouteForAdmin>
+            }
+          />
 
           <Route
             path="/create-product"
@@ -87,6 +111,23 @@ function App() {
                 <PaymentVerify />
               </ProtectedRoute>
             }
+          />
+
+          <Route
+            path="/paymentsuccess"
+            element={
+              <ProtectedRoute>
+                <PaymentVerify />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/recover-password/verify-otp"
+            element={<Forgot_Password />}
+          />
+          <Route
+            path="/recover-password/new-password"
+            element={<New_Password />}
           />
         </Routes>
         <ToastContainer />

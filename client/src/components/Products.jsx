@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Helmet } from 'react-helmet'
 import Loader from "../components/Loader";
 
 export default function ProductThree() {
@@ -29,8 +30,15 @@ export default function ProductThree() {
   }, []);
   return (
     <>
-      <h1 className="max-w-7xl mx-auto px-2 py-4  text-3xl mt-2 text-zinc-700 font-semibold">
-        All Products..
+      <div>
+        <Helmet>
+          <title>
+            Products
+          </title>
+        </Helmet>
+      </div>
+      <h1 className="max-w-7xl mx-auto px-2 py-4 text-center text-3xl mt-2 text-zinc-700 font-semibold">
+        All Products
       </h1>
       {loading ? (
         <div className="h-screen  p-4 w-full mx-auto">

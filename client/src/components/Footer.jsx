@@ -99,7 +99,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-400">
-                &copy; 2024 Rent-A-Home. All rights reserved.
+                &copy; 2024 Furniture Rentals. All rights reserved.
               </div>
             </footer>
           </div>
