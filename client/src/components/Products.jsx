@@ -14,7 +14,7 @@ export default function ProductThree() {
       const allProducts = await axios.get(
         import.meta.env.VITE_BASE_URL + `/api/products`
       );
-      console.log(allProducts.data);
+      console.log(allProducts);
       setProducts(allProducts.data);
       setLoading(false)
     } catch (error) {
