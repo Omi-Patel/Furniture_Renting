@@ -15,7 +15,10 @@ const PORT = process.env.PORT || 8080;
 
 app.use(
   cors({
-    origin: ["https://furniture-renting-client.onrender.com"],
+    origin: [
+      "https://furniture-renting-client.onrender.com",
+      "http://localhost:5173",
+    ],
     methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
