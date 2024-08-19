@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import signupImg from '../../public/Images/Signin_SignUp.png'
 
 export default function SignUpThree() {
   const [name, setName] = useState("");
@@ -116,7 +117,7 @@ export default function SignUpThree() {
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className="mb-2 flex justify-center">
             <img
-              src="src/assets/Signin_SignUp.png"
+              src={signupImg}
               width={100}
               alt="Furniture Rentals"
             />
