@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
+import heroImg from '../../public/Images/Signin_SignUp.png'
+
 
 export default function Forgot_Password() {
   const [email, setEmail] = useState("");
@@ -98,7 +100,7 @@ export default function Forgot_Password() {
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
             <div className="mb-2 flex justify-center">
               <img
-                src="/src/assets/Signin_SignUp.png"
+                src={heroImg}
                 width={100}
                 alt="Furniture Rentals"
               />

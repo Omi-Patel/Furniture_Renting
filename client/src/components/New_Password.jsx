@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import heroImg from '../../public/Images/Signin_SignUp.png'
+
 
 export default function New_Password() {
     const [password, setPassword] = useState("")
@@ -53,7 +55,7 @@ export default function New_Password() {
                     <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
                         <div className="mb-2 flex justify-center">
                             <img
-                                src="/src/assets/Signin_SignUp.png"
+                                src={heroImg}
                                 width={100}
                                 alt="Furniture Rentals"
                             />
