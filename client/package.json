@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -15,7 +15,7 @@
     "axios": "^1.7.2",
     "emailjs": "^4.0.3",
     "emailjs-com": "^3.2.0",
-    "framer-motion": "^11.2.12",
+    "framer-motion": "^11.3.2",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.399.0",
@@ -24,6 +24,7 @@
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.24.0",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {

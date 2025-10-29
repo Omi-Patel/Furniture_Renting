@@ -8,10 +8,10 @@ const booking = require("./src/routes/bookRoute");
 const payment = require("./src/routes/paymentRoute");
 const fetchUser = require("./src/middlewares/auth");
 
-connectToDB();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+connectToDB();
 
 app.use(
   cors({

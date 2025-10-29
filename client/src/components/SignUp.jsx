@@ -17,6 +17,7 @@ export default function SignUpThree() {
   // navigation
   const navigate = useNavigate();
 
+
   const validatePassword = (password) => {
     const regex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -38,12 +39,6 @@ export default function SignUpThree() {
     // contact validation
     if (mobile.length !== 10) {
       return toast.error("Please Enter Valid Contact Number..!");
-    }
-
-    if (!validatePassword(password)) {
-      return toast.error(
-        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character (@$!%*?&)"
-      );
     }
 
     // send data through backend API
@@ -121,6 +116,8 @@ export default function SignUpThree() {
               width={100}
               alt="Furniture Rentals"
             />
+
+            <img src="https://i.ibb.co/hHDy6pv/logo.png" width={100} alt="Furniture Rentals" />
           </div>
           <h2 className="text-center text-2xl font-bold leading-tight text-black">
             Sign up to create account

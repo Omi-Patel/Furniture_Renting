@@ -35,7 +35,6 @@ export default function SignInThree() {
 
       //receiving response
       const loginData = await response.json();
-      console.log(loginData);
 
       //condition
       if (loginData.error) {
@@ -104,6 +103,8 @@ export default function SignInThree() {
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
             <div className="mb-2 flex justify-center">
             <img src={signinImg} width={100} alt="Furniture Rentals" />
+
+            <img src="https://i.ibb.co/hHDy6pv/logo.png" width={100} alt="Furniture Rentals" />
             </div>
             <h2 className="text-center text-2xl font-bold leading-tight text-black">
               Sign in to your account

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Helmet } from 'react-helmet'
 import Loader from "../components/Loader";
+import { BASE_URL } from "../backend";
 
 export default function ProductThree() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ export default function ProductThree() {
   const getAllProducts = async () => {
     try {
       const allProducts = await axios.get(
-        import.meta.env.VITE_BASE_URL + `/api/products`
+         `${BASE_URL}/api/products`
       );
       console.log(allProducts);
       setProducts(allProducts.data);
